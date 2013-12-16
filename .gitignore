@@ -1,1 +1,12 @@
-gh-pages/*
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+pids
+logs
+.DS_Store
+*.sublime-workspace

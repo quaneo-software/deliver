@@ -183,13 +183,31 @@ bundle_install() {
   __exec_if_defined "post_bundle_install"
 }
 
+# npm_install() {
+#   __exec_if_defined "pre_npm_install"
+
+#   status "Installing modules with npm"
+#   __remote "
+#     set -e
+#     source ~/.profile
+#     cd $DELIVER_TO $SILENCE
+#     npm install $SILENCE
+#   "
+
+#   __exec_if_defined "post_npm_install"
+# }
+
+
 npm_install() {
   __exec_if_defined "pre_npm_install"
 
   status "Installing modules with npm"
   __remote "
     set -e
-    source ~/.profile
+    if [ -a ~/.profile ]
+    then
+      source ~/.profile
+    fi
     cd $DELIVER_TO $SILENCE
     npm install $SILENCE
   "
@@ -207,13 +225,36 @@ foreman_export() {
 
   __remote "
     set -e
-    source ~/.profile
+    if [ -a ~/.profile ]
+    then
+      source ~/.profile
+    fi
     cd $DELIVER_TO $SILENCE
     $_foreman $SILENCE
   "
 
   __exec_if_defined "post_foreman_export"
 }
+
+
+
+# foreman_export() {
+#   __exec_if_defined "pre_foreman_export"
+
+#   status "Exporting services to $SUPERVISOR"
+#   local _foreman="foreman export $SUPERVISOR tmp --user $APP_USER --app $APP"
+#   test -n "$PORT" && _foreman="$_foreman --port $PORT"
+#   test -n "$FOREMAN_EXTRAS" && _foreman="$_foreman $FOREMAN_EXTRAS"
+
+#   __remote "
+#     set -e
+#     source ~/.profile
+#     cd $DELIVER_TO $SILENCE
+#     $_foreman $SILENCE
+#   "
+
+#   __exec_if_defined "post_foreman_export"
+# }
 
 launch() {
   __exec_if_defined "pre_launch"
