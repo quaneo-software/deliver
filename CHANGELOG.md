@@ -1,9 +1,22 @@
+### What's new in deliver 0.8.0
+
+* default mode is now verbose, not compact 
+
+#### Deprecations
+
+BRANCH has been removed.
+SERVER & SERVERS has been removed.
+
 ### What's new in deliver 0.7.0
 
 * **shared** strategy with file permissions support (think www-data,
   php-fpm, etc.)
+* **s3** strategy for deploying your website to an S3 bucket (thanks
+  @TheDeveloper)
 * reset remotes to specific **REVISION** (see `deliver check`)
 * configurable **GIT_PUSH** (--all, --mirror, --tags etc.)
+* bluepill & smf support (thanks @jedahan)
+* `-p|--plain` mode, as in no colours, great for CIs such as Jenkins
 
 #### Notices
 
